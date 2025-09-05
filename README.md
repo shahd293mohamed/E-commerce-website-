@@ -2,6 +2,59 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
 
+# **E-Commerce Website**
+
+A **full-stack e-commerce web application** built with **Angular** (Frontend) and **Node.js + Express** (Backend).  
+The app allows customers to browse products, manage their cart, and place orders, while admins can manage products, categories, and orders.
+
+---
+
+## **Table of Contents**
+- [Features](#features)
+- [Technologies](#technologies)
+- [Setup Instructions](#setup-instructions)
+  - [Frontend Setup](#frontend-setup)
+  - [Backend Setup](#backend-setup)
+- [Development Commands](#development-commands)
+- [Project Structure](#project-structure)
+- [Branches](#branches)
+- [Screenshots](#screenshots)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
+
+---
+
+## **Features**
+
+### **User Features**
+- 🛍 Browse products by category.
+- 🔍 View detailed product pages.
+- 🛒 Add products to cart and checkout.
+- 🔐 User authentication (Sign up / Login).
+- 👤 Manage user profiles and orders.
+
+### **Admin Features**
+- ➕ Add, update, and delete products.
+- 📂 Manage categories and orders.
+- 💬 View customer messages.
+- 📊 Generate reports.
+
+---
+
+## **Technologies**
+
+### **Frontend (Angular)**
+- Angular CLI v20.1.4
+- TypeScript
+- HTML5, CSS3
+- Bootstrap
+
+### **Backend (Node.js + Express)**
+- Node.js
+- Express.js
+- MongoDB (or your chosen database)
+- JWT Authentication
+
 ## Development server
 
 To start a local development server, run:
