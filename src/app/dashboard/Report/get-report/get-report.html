@@ -1,0 +1,47 @@
+<form [formGroup]="reportForm" (ngSubmit)="getReport()">
+  <label>Start Date:</label>
+  <input type="date" formControlName="startDate">
+
+  <label>End Date:</label>
+  <input type="date" formControlName="endDate">
+
+  <button type="submit">Generate Report</button>
+</form>
+
+<div *ngIf="report.Total?.length">
+  <h3>📊 Summary</h3>
+  <p><strong>Total Revenue:</strong> {{ report.Total[0].totalSaledAmount | number:'1.2-2' }}</p>
+  <p><strong >Total Quantity Sold:</strong> {{ report.Total[0].totalQuantitySold }}</p>
+  <p><strong>Number of Purchases:</strong> {{ report.Total[0].numberofPurchases }}</p>
+</div>
+
+<div *ngIf="report.TopProducts?.length">
+  <h3>🔥 Top Products</h3>
+  <div *ngFor="let p of report.TopProducts">
+    <img [src]="p.imageURL" width="60">
+    <p>{{ p.name }} — Revenue: {{ p.revenue | number:'1.2-2' }} — Sold: {{ p.quantitySold }}</p>
+  </div>
+</div>
+
+<div *ngIf="report.salesByUsers?.length">
+  <h3>👥 Top Customers</h3>
+  <div *ngFor="let u of report.salesByUsers">
+    <p>{{ u.name }} — Spent: {{ u.totalSpent | number:'1.2-2' }} — Purchases: {{ u.totalPurchases }} — Units: {{ u.totalUnits }}</p>
+  </div>
+</div>
+
+<div *ngIf="report.monthlySales?.length">
+  <h3>📅 Monthly Sales</h3>
+  <table>
+    <tr>
+      <th>Month</th>
+      <th>Revenue</th>
+      <th>Quantity</th>
+    </tr>
+    <tr *ngFor="let m of report.monthlySales">
+      <td>{{ m._id.month }}/{{ m._id.year }}</td>
+      <td>{{ m.totalRevenue | number:'1.2-2' }}</td>
+      <td>{{ m.totalQuantitySold }}</td>
+    </tr>
+  </table>
+</div>

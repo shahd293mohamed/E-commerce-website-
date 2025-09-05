@@ -1,0 +1,210 @@
+<!-- <div class="profile-page">
+  <div class="profile-content">
+
+    
+    <div class="profile-sidebar">
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <div *ngIf="user" class="avatar-circle">{{ user?.name?.charAt(0) || 'U' }}</div>
+        </div>
+        <h2 class="profile-name">{{ user?.name }}</h2>
+        <p class="profile-email">{{ user?.email }}</p>
+      </div>
+
+      <nav class="profile-nav">
+        <button class="profile-nav-item" [class.active]="activeSection==='orders'" (click)="setActiveSection('orders')">📦 My Orders</button>
+        <button class="profile-nav-item" [class.active]="activeSection==='profile-info'" (click)="setActiveSection('profile-info')">👤 Profile Info</button>
+        <button class="profile-nav-item" [class.active]="activeSection==='wishlist'" (click)="setActiveSection('wishlist')">❤️ Wishlist</button>
+        <button class="profile-nav-item" [class.active]="activeSection==='testimonial'" (click)="setActiveSection('testimonial')">⭐ Write Review</button>
+      </nav>
+    </div>
+    <div class="profile-main">
+      <div class="profile-section" [class.active]="activeSection==='orders'">
+        <h1 class="section-title">My Orders</h1>
+        <div *ngFor="let order of orders; let i = index" class="order-card">
+          <div class="order-header">
+            <div class="order-info">
+              <h3 class="order-number">Order #{{ i + 1 }}</h3>
+              <p class="order-date">Placed on {{ order.createdAt | date:'mediumDate' }}</p>
+            </div>
+            <div class="order-status" [ngClass]="order.statusOfOrder">
+              <span class="status-dot"></span>{{ order.statusOfOrder }}
+            </div>
+          </div>
+
+          <div *ngIf="!order.items.length" class="no-items-message">No items in this order.</div>
+
+          <div class="order-items">
+            <div *ngFor="let item of order.items" class="order-item">
+              <img [src]="getImageUrl(item.product.img)" alt="{{ item.product.title }}">
+              <div class="item-details">
+                <h4>{{ item.product.title }}</h4>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p class="item-price">EGP {{ item.priceAtTimeOfOrder * item.quantity | number:'1.2-2' }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-footer">
+            <div class="order-total">Total: EGP {{ order.totalPrice | number:'1.2-2' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-section" [class.active]="activeSection==='profile-info'">
+        <h1 class="section-title">Profile Information</h1>
+
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" formControlName="name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" formControlName="email">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" formControlName="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" rows="3" formControlName="address"></textarea>
+          </div>
+
+          <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+      </div>
+      
+      <div class="profile-section" [class.active]="activeSection==='wishlist'">
+        <h1 class="section-title">My Wishlist</h1>
+        <p>Wishlist items will go here (fetch from your API later).</p>
+      </div>
+
+      
+      <div class="profile-section" [class.active]="activeSection==='testimonial'">
+        <h1 class="section-title">Write a Review</h1>
+        <div class="rating-input">
+          <span *ngFor="let r of [1,2,3,4,5]" class="star"
+                [class.active]="r <= selectedRating"
+                (click)="setRating(r)">⭐</span>
+        </div>
+        <button (click)="submitReview()">Submit Review</button>
+      </div>
+
+    </div>
+  </div>
+</div> -->
+
+<div class="profile-page">
+  <div class="profile-content">
+
+    <!-- Sidebar -->
+    <div class="profile-sidebar">
+      <div class="profile-card">
+        <div class="profile-avatar">
+          <div *ngIf="user" class="avatar-circle">{{ user?.name?.charAt(0) || 'U' }}</div>
+        </div>
+        <h2 class="profile-name">{{ user?.name }}</h2>
+        <p class="profile-email">{{ user?.email }}</p>
+      </div>
+
+      <nav class="profile-nav">
+        <button class="profile-nav-item" [class.active]="activeSection==='orders'" (click)="setActiveSection('orders')">📦 My Orders</button>
+        <button class="profile-nav-item" [class.active]="activeSection==='profile-info'" (click)="setActiveSection('profile-info')">👤 Profile Info</button>
+        <button class="profile-nav-item" [class.active]="activeSection==='wishlist'" (click)="setActiveSection('wishlist')">❤️ Wishlist</button>
+        <button class="profile-nav-item" [class.active]="activeSection==='testimonial'" (click)="setActiveSection('testimonial')">⭐ Write Review</button>
+
+        <!-- 🚪 Sign Out -->
+        <button class="profile-nav-item logout" (click)="signOut()">🚪 Sign Out</button>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="profile-main">
+
+      <!-- Orders Section -->
+   
+      <div class="profile-section" [class.active]="activeSection==='orders'">
+        <h1 class="section-title">My Orders</h1>
+        <div *ngFor="let order of orders; let i = index" class="order-card">
+          <div class="order-header">
+            <div class="order-info">
+              <h3 class="order-number">Order #{{ i + 1 }}</h3>
+              <p class="order-date">Placed on {{ order.createdAt | date:'mediumDate' }}</p>
+            </div>
+            <div class="order-status" [ngClass]="order.statusOfOrder">
+              <span class="status-dot"></span>{{ order.statusOfOrder }}
+            </div>
+          </div>
+
+          <div *ngIf="!order.items.length" class="no-items-message">No items in this order.</div>
+
+          <div class="order-items">
+            <div *ngFor="let item of order.items" class="order-item">
+              <img [src]="getImageUrl(item.product.img)" alt="{{ item.product.title }}" class="item-image">
+              <div class="item-details">
+                <h4>{{ item.product.title }}</h4>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p class="item-price">EGP {{ item.priceAtTimeOfOrder * item.quantity | number:'1.2-2' }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-footer">
+            <div class="order-total">Total: EGP {{ order.totalPrice | number:'1.2-2' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Info Section -->
+      <div class="profile-section" [class.active]="activeSection==='profile-info'">
+        <h1 class="section-title">Profile Information</h1>
+
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+          <div class="form-group">
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" formControlName="name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" formControlName="email">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" formControlName="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" rows="3" formControlName="address"></textarea>
+          </div>
+
+          <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Wishlist Section -->
+      <div class="profile-section" [class.active]="activeSection==='wishlist'">
+        <h1 class="section-title">My Wishlist</h1>
+        <p>Wishlist items will go here (fetch from your API later).</p>
+      </div>
+
+      <!-- Testimonial Section -->
+      <div class="profile-section" [class.active]="activeSection==='testimonial'">
+        <h1 class="section-title">Write a Review</h1>
+        <div class="rating-input">
+          <span *ngFor="let r of [1,2,3,4,5]" class="star"
+                [class.active]="r <= selectedRating"
+                (click)="setRating(r)">⭐</span>
+        </div>
+        <button (click)="submitReview()">Submit Review</button>
+      </div>
+
+    </div>
+  </div>
+</div>

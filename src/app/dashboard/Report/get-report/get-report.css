@@ -1,0 +1,103 @@
+/* Container */
+.sales-report-page {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Form */
+form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input[type="date"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  padding: 0.6rem 1.2rem;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #005fa3;
+}
+
+/* Section Headings */
+h3 {
+  margin-top: 2rem;
+  color: #333;
+  border-bottom: 2px solid #0078d4;
+  padding-bottom: 0.3rem;
+}
+
+/* Summary */
+.summary-card p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+/* Top Products */
+.top-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.top-products img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.top-products p {
+  margin: 0.3rem 0;
+}
+
+/* Top Users */
+.salesByUsers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.salesByUsers p {
+  background-color: #fff;
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Monthly Sales Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th, table td {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+table th {
+  background-color: #0078d4;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

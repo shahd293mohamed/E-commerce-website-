@@ -1,0 +1,105 @@
+<div class="main-layout">
+<aside class="sidebar">
+  <div class="sidebar-content">
+    <h2 class="sidebar-title">Explore</h2>
+    <nav class="sidebar-nav">
+      <a routerLink="/home" class="nav-item active">
+        <span class="nav-icon">⚡</span>
+        <span>New In</span>
+      </a>
+
+      <a
+        *ngFor="let main of mainCategories"
+        class="nav-item"
+        (click)="onMainCategoryClick(main)"
+        [routerLink]="['/products']"
+        [queryParams]="{ categoryName: main.name }"
+      >
+        <span class="nav-icon">👔</span>
+        <span>{{ main.name }}'s Clothing</span>
+      </a>
+
+      <a routerLink="/contactus" class="nav-item">
+        <span>Contact Us</span>
+      </a>
+      <a routerLink="/faq" class="nav-item">
+        <span class="nav-icon">❓</span>
+        <span>FAQ</span>
+      </a>
+    </nav>
+  </div>
+</aside>
+
+  
+  <main class="main-content">
+ 
+    <div class="promo-section">
+      <div class="promo-card sale-card">
+        <div class="promo-content">
+          <div class="promo-icons">
+            <span class="icon">⚡</span>
+            <span class="icon">💫</span>
+          </div>
+          <h2 class="promo-title">GET UP TO 50% OFF</h2>
+          <p class="promo-text">On selected items</p>
+          <button class="promo-btn">Shop Sale</button>
+        </div>
+      </div>
+
+      <div class="promo-card collection-card">
+        <div class="promo-content">
+          <h2 class="promo-title">Winter Collection</h2>
+          <p class="promo-text">Keep it casual</p>
+          <button class="promo-btn">Explore Collection</button>
+        </div>
+      </div>
+    </div>
+
+        <div class="filters-bar">
+                <div class="filters-left">
+                <span style="color: var(--muted-foreground);">Products</span>
+                </div>
+                <div class="filters-right">
+                        <select class="filter-btn" [(ngModel)]="sortBy" (ngModelChange)="onSortChange(sortBy, order)">
+                        <option value="createdAt">Newest</option>
+                        <option value="price">Price</option>
+                        <option value="title">Name</option>
+                        </select>
+
+                        <select class="filter-btn" [(ngModel)]="order" (ngModelChange)="onSortChange(sortBy, order)">
+                        <option value="asc">Ascending</option>
+                        <option value="desc" selected>Descending</option>
+                        </select>
+                        <button class="filter-btn">🔍 Filter</button>
+                </div>
+            </div>
+ 
+    <div class="products-grid">
+      <div class="product-card" *ngFor="let product of products">
+        <div class="product-image">
+          <img [src]="getImageUrl(product.img)" [alt]="product.title" />
+          <div class="product-overlay">
+            <button class="add-to-cart-btn" [class.disabled]="product.stock === 0" (click)="addToCart(product._id, 1, product.price)">
+              {{ product.stock === 0 ? 'Out of Stock' : 'Add to Cart' }}
+            </button>
+          </div>
+          <button class="like-btn">🤍</button>
+          <div class="stock-badge" [class.out-of-stock]="product.stock === 0">
+            {{ product.stock === 0 ? 'Out of Stock' : product.stock + ' left' }}
+          </div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">{{ product.category }}</div>
+          <h3 class="product-name">{{ product.title }}</h3>
+          <div class="product-rating">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+            <span class="rating-count">(4.5)</span>
+          </div>
+          <div class="product-price">EGP {{ product.price }}</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 
+
+

@@ -1,0 +1,11 @@
+<div class="products-container">
+  <div *ngFor="let product of products" class="product-card">
+    <img [src]="getImageUrl(product.img)" alt="{{ product.title }}" class="product-image">
+    <h3>{{ product.title }}</h3>
+    <p>{{ product.description }}</p>
+    <p><strong>Price:</strong> {{ product.price }} EGP</p>
+    <p><strong>Stock:</strong> {{ product.stock }}</p>
+    <p><strong>Route:</strong> {{ product.route }}</p>
+    <button (click)="goToUpdate(product._id)">Update</button>
+  </div>
+</div>

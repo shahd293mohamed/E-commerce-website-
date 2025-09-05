@@ -1,0 +1,38 @@
+<div class="admin-orders">
+  <h2>🧾 All Orders</h2>
+
+  <div *ngFor="let order of orders" class="order-card">
+    <h3>Order #{{ order._id }}</h3>
+    <p><strong>Status:</strong> {{ order.statusOfOrder }}</p>
+    <p><strong>Total Price:</strong> EGP {{ order.totalPrice }}</p>
+    <p><strong>Created At:</strong> {{ order.createdAt | date:'short' }}</p>
+
+    <div class="user-info">
+      <h4>👤 Customer Info</h4>
+      <p><strong>Name:</strong> {{ order.user.name }}</p>
+      <p><strong>Email:</strong> {{ order.user.email }}</p>
+      <p><strong>Phone:</strong> {{ order.user.phone || 'N/A' }}</p>
+      <!-- <p><strong>Address:</strong> {{ order.user.address || order.user.addresses[0] || 'N/A' }}</p> -->
+    </div>
+
+    <div class="order-items">
+      <h4>📦 Items</h4>
+      <div *ngFor="let item of order.items" class="item">
+        <img [src]="item.product.imageURL" alt="{{ item.product.title }}" width="80">
+        <p><strong>{{ item.product.title }}</strong></p>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price at Order: EGP {{ item.priceAtTimeOfOrder }}</p>
+      </div>
+    </div>
+
+    <div class="status-update">
+      <label for="status">Update Status:</label>
+      <select [(ngModel)]="order.statusOfOrder">
+        <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+      </select>
+      <button (click)="updateStatus(order)">Update</button>
+    </div>
+
+    <hr>
+  </div>
+</div>

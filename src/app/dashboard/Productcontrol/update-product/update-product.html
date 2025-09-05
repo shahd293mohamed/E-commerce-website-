@@ -1,0 +1,23 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <label>Title</label>
+  <input formControlName="title" type="text" />
+
+  <label>Price</label>
+  <input formControlName="price" type="number" />
+
+  <label>Description</label>
+  <input formControlName="description" type="text" />
+
+  <label>Image</label>
+  <input type="file" (change)="onFileChange($event)">
+
+
+  <label>Stock</label>
+  <input formControlName="stock" type="number" />
+
+  <label>Route</label>
+  <input formControlName="route" type="text" />
+
+  <button type="submit">Update Product</button>
+</form>
+

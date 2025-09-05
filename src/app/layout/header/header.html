@@ -1,0 +1,51 @@
+ <header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <h1 class="gradient-text">Trendella</h1>
+      </div>
+
+      <nav class="nav">
+        <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
+
+        <!-- loop over main categories-->
+        <div *ngFor="let main of mainCategories" class="dropdown">
+          <a [routerLink]="['/categories', main.name]" class="nav-link" (click) ="onMainCategoryClick(main)">
+            {{ main.name }}
+          </a>
+
+           <!-- subcategories dropdown  -->
+          <div class="dropdown-content" *ngIf="subCategoriesMap[main._id]">
+            <a *ngFor="let sub of subCategoriesMap[main._id]" (click) ="onSubCategoryClick(main, sub)"
+               [routerLink]="['/categories', main.name]"
+               [queryParams]="{ category: sub.name }">
+              {{ sub.name}}
+            </a>
+          </div>
+        </div> 
+        <!-- <li (click)="goToCategory(categories.name)">{{ category.name }}</li>
+<ul *ngFor="let sub of category.subCategories">
+  <li (click)="goToCategory(categories.name, sub.name)">
+    {{ sub.name }}
+  </li>
+</ul> -->
+
+        <a routerLink="/about" routerLinkActive="active" class="nav-link">About</a>
+        <a routerLink="/contactus" routerLinkActive="active" class="nav-link">Contact</a>
+        <a routerLink="/faq" routerLinkActive="active" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <a routerLink="/favourites" class="icon-btn">♡</a>
+        <a routerLink="/cart" class="icon-btn">🛒</a>
+          <!-- Profile Icon -->
+          <a routerLink="/profile" class="icon-btn" title="Profile">
+            <span class="profile-icon">👤</span>
+          </a>
+
+        <a routerLink="/login" class="btn btn-primary">Sign In</a>
+      </div>
+    </div>
+  </div>
+</header>
+

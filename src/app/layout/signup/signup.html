@@ -1,0 +1,49 @@
+<div class="auth-form-container" id="signup-form">
+  <h1 class="auth-title">Create Account</h1>
+  <p class="auth-subtitle">Join StyleHub for exclusive offers</p>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth-form">
+    
+    <div class="form-group">
+      <label for="signup-name">Full Name</label>
+      <input type="text" id="signup-name" formControlName="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="signup-email">Email Address</label>
+      <input type="email" id="signup-email" formControlName="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="signup-phone">Phone Number</label>
+      <input type="tel" id="signup-phone" formControlName="phone" required>
+    </div>
+
+    <div class="form-group">
+      <label for="signup-address">Address</label>
+      <textarea id="signup-address" rows="3" formControlName="address" required
+        placeholder="Street address, city, governorate"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" formControlName="password" required>
+    </div>
+
+    <div class="form-group">
+      <label for="signup-confirm">Confirm Password</label>
+      <input type="password" id="signup-confirm" formControlName="confirmPassword" required>
+    </div>
+
+    <button type="submit" class="auth-btn primary">Create Account</button>
+
+    <p class="auth-link">
+      Already have an account? 
+      <a routerLink="/login">Sign in here</a>
+    </p>
+  </form>
+
+  <p style="color:red">{{msg}}</p>
+</div>
+
+hellllo

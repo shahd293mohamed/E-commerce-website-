@@ -1,0 +1,122 @@
+<!-- <h1>Your Cart</h1>
+@if(items.length >0){
+<div *ngFor="let item of items">
+   <img [src]="item.product.imageURL" width="100"> 
+  <h3>{{ item.product.title }}</h3>
+  <p>Quantity: {{ item.quantity }}</p>
+  <p>Price: {{ item.priceSnapshot }}</p>
+</div>
+}
+<button class="checkout-btn" (click)="checkout()">
+  Checkout || {{ totalPrice }}
+</button> -->
+
+
+
+<div class="cart-page">
+  <div class="cart-content">
+    <h1 class="page-title">Shopping Cart</h1>
+
+    <div class="cart-layout">
+      <div class="cart-items">
+        <div *ngFor="let item of items" class="cart-item">
+           <div class="item-image">
+            <img [src]="getImageUrl(item.product.img)" alt="{{ item.product?.title }}">
+          </div>
+          <div class="item-details">
+            <h3 class="item-name">{{ item.product?.title }}</h3>
+          <p class="item-price">EGP {{ item.product?.price }}</p>
+          <div class="item-total">EGP {{ item.quantity * (item.product?.price || 0) }}</div>
+          </div> 
+          
+        
+
+          <div class="item-quantity">
+           <button class="qty-btn" (click)="decreaseQty(item)">-</button>
+          <span class="qty-value">{{ item.quantity }}</span>
+          <button class="qty-btn" (click)="increaseQty(item)">+</button>
+          </div>
+          <div class="item-total">EGP {{ item.quantity * item.product.price }}</div>
+          <button class="remove-btn" (click)="removeItem(item)">🗑️</button>
+        </div>
+      </div>
+
+      <div class="price-changed-section" *ngIf="getPriceChangedItems().length > 0">
+  <h3 class="price-changed-title">⚠️ Price Changed Items</h3>
+  <p class="price-changed-text">These items have changed in price since you added them:</p>
+
+  <div *ngFor="let item of getPriceChangedItems()" class="cart-item price-changed">
+    <div class="item-image">
+      <img [src]="getImageUrl(item.product.img)" alt="{{ item.product.title }}">
+    </div>
+    <div class="item-details">
+      <h3 class="item-name">{{ item.product.title }}</h3>
+      <p class="price-change">
+        <span class="old-price">EGP {{ item.priceSnapshot }}</span>
+        <span class="new-price">EGP {{ item.product.price }}</span>
+      </p>
+    </div>
+    <div class="price-change-actions">
+      <button class="accept-price-btn" (click)="acceptNewPrice(item)">Accept New Price</button>
+      <button class="remove-item-btn" (click)="removeItem(item)">Remove</button>
+    </div>
+  </div>
+</div>
+
+<div class="out-of-stock-section" *ngIf="getOutOfStockItems().length > 0">
+  <h3 class="out-of-stock-title">❌ Out of Stock Items</h3>
+  <p class="out-of-stock-text">These items are no longer available:</p>
+
+  <div *ngFor="let item of getOutOfStockItems()" class="cart-item out-of-stock">
+    <div class="item-image">
+      <img [src]="getImageUrl(item.product.img)" alt="{{ item.product.title }}">
+    </div>
+    <div class="item-details">
+      <h3 class="item-name">{{ item.product.title }}</h3>
+      <p class="item-status">Status: Out of Stock</p>
+    </div>
+    <button class="remove-item-btn" (click)="removeItem(item)">Remove</button>
+  </div>
+</div>
+
+
+      <div class="cart-summary">
+        <div class="summary-card">
+          <h2 class="summary-title">Order Summary</h2>
+
+          <div class="summary-line">
+            <span>Subtotal ({{ items.length }} items)</span>
+            <span>EGP {{ totalPrice }}</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Shipping</span>
+            <span class="free">Free</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-line total">
+            <span>Total</span>
+            <span>EGP {{ totalPrice }}</span>
+          </div>
+
+          <button class="checkout-btn" (click)="checkout()">Checkout</button>
+
+          <div class="delivery-info">
+            <h3>Delivery Information</h3>
+            <ul>
+              <li>🚚 Free delivery across Egypt</li>
+              <li>💰 Cash on delivery</li>
+              <li>🔄 14 days return policy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

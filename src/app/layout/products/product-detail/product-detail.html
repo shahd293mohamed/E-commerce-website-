@@ -1,0 +1,56 @@
+<div class="product-detail-page">
+  <div class="breadcrumb">
+    <span>{{ product?.title }}</span>
+  </div>
+
+  <div class="product-detail-content">
+    <div class="product-images">
+      <div class="main-image">
+        <img [src]= "getImageUrl(product.img)" [alt]="product.title" />
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1 class="product-title">{{ product?.title }}</h1>
+      <div class="product-price">EGP {{ product?.price }}</div>
+      <div class="product-rating">
+        <span class="stars">⭐⭐⭐⭐⭐</span>
+        <span class="rating-text">(4.5) • 24 Reviews</span>
+      </div>
+
+      <div class="product-description">
+        <p>{{ product?.description }}</p>
+      </div>
+
+      <div class="product-options">
+        <div class="size-selector">
+          <h3>Size</h3>
+          <div class="size-buttons">
+            <!-- <button class="size-btn" *ngFor="let size of sizes"  -->
+                    >
+              <!-- {{ size }} -->
+            <!-- </button> -->
+          </div>
+        </div>
+
+        <div class="stock-info">
+          <span class="stock-status">✅ {{ product?.stock }} left in stock</span>
+        </div>
+      </div>
+
+      <div class="product-actions">
+        <button class="add-to-cart-btn primary" (click) ="addToCart(product._id, 1, product.price)">Add to Cart</button>
+        <button class="like-btn" >❤️ Add to Wishlist</button>
+      </div>
+
+      <div class="delivery-info">
+        <h3>Delivery Information</h3>
+        <ul>
+          <li>🚚 Free delivery across Egypt</li>
+          <li>💰 Cash on delivery available</li>
+          <li>🔄 14 days return policy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

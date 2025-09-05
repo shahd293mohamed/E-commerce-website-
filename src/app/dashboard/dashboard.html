@@ -1,0 +1,24 @@
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="dashboard-sidebar">
+    <h2>Admin Panel</h2>
+    <nav>
+      <ul>
+        <li><a routerLink="addcategory" routerLinkActive="active">➕ Add Category</a></li>
+        <li><a routerLink="getcategory" routerLinkActive="active">📂 All Categories</a></li>
+        <li><a routerLink="addproduct" routerLinkActive="active">➕ Add Product</a></li>
+        <li><a routerLink="getproduct" routerLinkActive="active">📦 All Products</a></li>
+        <li><a routerLink="orders" routerLinkActive="active">🧾 Orders</a></li>
+        <li><a routerLink="messages" routerLinkActive="active">💬 Messages</a></li>
+        <li><a routerLink="addsettings" routerLinkActive="active">⚙️ Add Settings</a></li>
+        <li><a routerLink="updatesettings" routerLinkActive="active">🔧 Update Settings</a></li>
+        <li><a routerLink="report" routerLinkActive="active">📊 Reports</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

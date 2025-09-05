@@ -1,0 +1,20 @@
+<div class="messages-page">
+  <h2>📬 All Contact Messages</h2>
+
+  <div *ngIf="messages.length === 0">
+    <p>No messages found.</p>
+  </div>
+
+  <div *ngFor="let msg of messages" class="message-card">
+    <h3>{{ msg.subject }}</h3>
+    <p><strong>Category:</strong> {{ msg.category }}</p>
+    <p><strong>Message:</strong> {{ msg.message }}</p>
+
+    <div class="user-info" *ngIf="msg.user">
+      <p><strong>From:</strong> {{ msg.user?.name }} ({{ msg.user?.email }})</p>
+    </div>
+
+    <p><strong>Sent At:</strong> {{ msg.createdAt | date:'short' }}</p>
+    <hr>
+  </div>
+</div>
